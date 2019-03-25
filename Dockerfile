@@ -8,22 +8,9 @@ RUN apt-get install -y git \
                     gcc-multilib \
                     tmux
 
-RUN git clone http://web.mit.edu/ccutler/www/qemu.git -b 6.828-2.3.0
+RUN apt-get install -y qemu-kvm qemu
+RUN rm -rf /var/lib/apt/lists/
 
-RUN apt-get install -y libsdl1.2-dev \
-                        libtool-bin \
-                        libglib2.0-dev \
-                        libz-dev \
-                        libpixman-1-dev
+WORKDIR xv6-public
 
-RUN cd qemu && \
-        ./configure --disable-kvm --target-list="i386-softmmu x86_64-softmmu" && \
-        make && \
-        make install && \
-        cd ..
-
-ADD ./jos jos
-
-WORKDIR jos
-
-CMD ["sh"]
+CMD ["bash"]
