@@ -21,7 +21,7 @@ This will launch a shell inside the container connected to your terminal.
 Browse and edit the xv6 source locally and compile through the virtual machine by running
 
 ```bash
-qemu-nox
+make qemu-nox
 ```
 
 exit qemu by pressing ```CTRL+A, X```
