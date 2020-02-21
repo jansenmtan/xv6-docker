@@ -1,29 +1,48 @@
-# xv6-docker
-Follow along with the MIT Operating Systems course (https://pdos.csail.mit.edu/6.828/2017/) for learning more about kernel and os development. This repo contains a dockerized environment for developing and debugging to xv6 kernel, with a few utilities to make things easier to get started.
+# xv6 through QEMU through Docker
 
 ## First time setup
+### Step 0: Install Docker
+Make sure you have Docker and Docker Compose installed on your system
+  - For Windows and Mac users, both are installed together
+  - For Linux users, first install Docker then Docker Compose
 
-I've created a fork of the os source and linked as a submodule. To grab the source, update this dependency: 
+Read more: https://docs.docker.com/compose/install/
+
+### Step 1: Clone this repository 
+Navigate to a fitting folder and run the following command:
+```bash
+git clone https://github.com/anton-christensen/xv6-docker.git
+```
+
+### Step 2: Download the xv6 source code
+The source for the operating system is included as a submodule in this repository.
+To download the newest version run the following command in the newly created *xv6-docker* folder:
 ```bash
 git submodule update --init --recursive
 ```
 
-The next step is to build the docker image. This will pull the required dependencies for compiling the xv6 source, grab qemu for running the kernel. Installing all the dependencies takes a short while, but it only has to be done once. 
-
-## Run the virtual machine
-To run the image do the following:
+### Step 3: Build the Docker image
+The first time you run the image with the following command, the Docker image will be built.
+The required dependencies are downloaded, compiled and run, which might take a few minutes, but only needs to be done once.
 ```bash
 docker-compose run --rm vm
 ```
 
-This will launch a shell inside the container connected to your terminal.
+## Running the Docker image
+The docker image can be run with the same command used to build it: 
+```bash
+docker-compose run --rm vm
+```
 
-Browse and edit the xv6 source locally and compile through the virtual machine by running
-
+This launches a shell inside the container which is connected to your terminal.
+Running the following command in that terminal compiles and runs the xv6 source code.
 ```bash
 make qemu-nox
 ```
 
-exit qemu by pressing ```CTRL+A, X```
+In order to exit QEMU press ```Ctrl + A, X```
+
+## Editing xv6
+Any changes you make to the files in the *xv6-docker/xv6-public* folder are also present inside the container, but you will need the run ```make qemu-nox``` in order to compile your latest changes.
 
 
