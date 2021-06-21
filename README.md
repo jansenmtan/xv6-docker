@@ -37,12 +37,12 @@ docker-compose run --rm vm
 This launches a shell inside the container which is connected to your terminal.
 Running the following command in that terminal compiles and runs the xv6 source code.
 ```bash
-make qemu-nox
+make qemu
 ```
 
 In order to exit QEMU press ```Ctrl + A, X```
 
 ## Editing xv6
-Any changes you make to the files in the *xv6-docker/xv6-public* folder are also present inside the container, but you will need the run ```make qemu-nox``` in order to compile your latest changes.
+Any changes you make to the files in the *xv6-docker/xv6-public* folder are also present inside the container, but you will need the run ```make qemu``` in order to compile your latest changes.
 
 
